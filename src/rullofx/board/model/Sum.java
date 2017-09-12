@@ -23,6 +23,21 @@ public class Sum {
 		this.target = target;
 		this.current = -1;
 	}
+
+    /**
+     * Indique si la valeur courante est égale à la valeur à atteindre
+     * @return vrai si la valeur courante est égale à la valeur à atteindre, faux sinon
+     */
+    public boolean isTargetReached() {
+        return false;
+    }
+    
+    /**
+     * Met à jour la somme courante, en ne tenant compte que des cellules actives.
+     */
+    public void update() {
+    }        
+    
 	
 	
 	
