@@ -36,7 +36,7 @@ public class SumTest {
     @Test
     public void update_noInactiveCell() {
     	 sum.update();
-        
+    	 sum.update();
         // toutes les cellules étant actives, la somme doit valoir 10
         assertEquals(10, sum.getCurrent());
     }
@@ -47,6 +47,7 @@ public class SumTest {
     		this.cells.get(i).toggleActiveState();
     	}
     	 sum.update();
+    	 sum.update();
         // toutes les cellules étant inactives, la somme doit valoir 0
         assertEquals(0, sum.getCurrent());
     }
@@ -55,6 +56,7 @@ public class SumTest {
     public void update_someActiveCell() {
     	this.cells.get(0).toggleActiveState();
     	this.cells.get(3).toggleActiveState();
+    	 sum.update();
     	 sum.update();
         // toutes les cellules étant inactives, la somme doit valoir 0
         assertEquals(5, sum.getCurrent());
