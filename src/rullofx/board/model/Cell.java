@@ -18,11 +18,9 @@ public class Cell {
 	 * @param active Etat de la cellule
 	 * @param locked Etat du verrouillage de la cellule.
 	 */
-	public Cell(int value, boolean active, boolean locked) {
+	public Cell(int value) {
 		super();
 		this.value = value;
-		this.active = active;
-		this.locked = locked;
 	}
 
 	/**
