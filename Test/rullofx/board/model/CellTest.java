@@ -49,4 +49,10 @@ public class CellTest {
         assertTrue("Etat de la cellule incorrect", cell.isLocked());
     }
     
+    @Test
+    public void toggleLockedState_inactiveCell(){
+    	cell.toggleActiveState();
+    	assertFalse("L'état de la cellule ne devrait pas être modifié",cell.toggleLockedState());
+    	assertFalse("La cellule ne devrait pas être verrouillé.",cell.isLocked());
+    }
 }
