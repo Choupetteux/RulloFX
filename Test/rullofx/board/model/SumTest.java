@@ -41,4 +41,14 @@ public class SumTest {
         assertEquals(10, sum.getCurrent());
     }
     
+    @Test
+    public void update_noActiveCell() {
+    	for(int i = 0; i < this.cells.size();i++){
+    		this.cells.get(i).toggleActiveState();
+    	}
+    	 sum.update();
+        // toutes les cellules étant inactives, la somme doit valoir 0
+        assertEquals(0, sum.getCurrent());
+    }
+    
 }
