@@ -35,8 +35,18 @@ public class CellTest {
     	cell.toggleActiveState();
     	assertTrue("La cellule devrait être modifiée",cell.toggleActiveState());
     	assertTrue("La cellule devrait être activée",cell.isActive());
+    }
     
-    
+    @Test
+    public void toggleLockedState_activeAndUnlockedCell(){
+    	boolean returnValue = cell.toggleLockedState();
+
+        // la cellule devrait être désormais verrouillée et
+        // la valeur de retour doit donc être vraie
+        assertTrue("La cellule ne s'est pas verrouillée.", returnValue);
+        
+        // la cellule étant initialement activée, elle doit maintenant être désactivée 
+        assertTrue("Etat de la cellule incorrect", cell.isLocked());
     }
     
 }

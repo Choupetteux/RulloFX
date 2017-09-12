@@ -70,7 +70,18 @@ public class Cell {
      * @return vrai si l'état a été modifié, faux sinon
      */
     public boolean toggleLockedState() {
-        return false;
+    	if(this.active == true){
+        	if(this.locked == true){
+        		this.locked = false;
+        	}
+        	else if (this.locked == false){
+        		this.locked = true;
+        	}
+        	return true;
+        }
+        else{
+        	return false;
+        }
     }
     
 	
