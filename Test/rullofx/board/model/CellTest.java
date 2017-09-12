@@ -29,4 +29,14 @@ public class CellTest {
         // la cellule étant initialement activée, elle doit maintenant être désactivée 
         assertFalse("Etat de la cellule incorrect", cell.isActive());
     }
+    
+    @Test
+    public void toggleActiveState_inactiveCell(){
+    	cell.toggleActiveState();
+    	assertTrue("La cellule devrait être modifiée",cell.toggleActiveState());
+    	assertTrue("La cellule devrait être activée",cell.isActive());
+    
+    
+    }
+    
 }

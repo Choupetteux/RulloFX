@@ -21,6 +21,8 @@ public class Cell {
 	public Cell(int value) {
 		super();
 		this.value = value;
+		this.active = true;
+		this.locked = false;
 	}
 
 	/**
@@ -50,7 +52,12 @@ public class Cell {
      */
     public boolean toggleActiveState() {
         if(this.locked == false){
-        	this.locked = true;
+        	if(this.active == true){
+        		this.active = false;
+        	}
+        	else if (this.active == false){
+        		this.active = true;
+        	}
         	return true;
         }
         else{
