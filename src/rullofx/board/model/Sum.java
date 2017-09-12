@@ -25,6 +25,7 @@ public class Sum {
 		this.target = target;
 		this.current = -1;
 		this.cells = cells;
+		this.update();
 	}
 
     /**
