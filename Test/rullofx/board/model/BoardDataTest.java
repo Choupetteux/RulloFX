@@ -25,7 +25,11 @@ public class BoardDataTest {
 
     @Test
     public void initColumnSum() {
-        fail("Test pas encore implémenté");
+    	data.initCell(2, 2, 8);
+    	data.initCell(1, 2, 3);
+    	data.initCell(0, 2, 0);
+    	assertTrue((data.getColumnSum(2).getCurrent() == 11));
+    	assertFalse((data.getColumnSum(2).getCurrent() != 11));
     }
 
     @Test

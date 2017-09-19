@@ -10,6 +10,25 @@ public class BoardData {
     private Sum[] columnSums;
     private Sum[] rowSums;
     
+    public class Column implements Array<Cell> {
+        private int column;
+
+        public Column(int column) {
+            this.column = column;
+        }
+        
+        @Override
+        public int size() {
+            return BoardData.this.cells.length;
+        }
+
+        @Override
+        public Cell get(int row) {
+            return BoardData.this.cells[row][this.column];
+        }        
+    }
+
+    
     /**
      * Constructeur
      * @param rowCount nombre de lignes
@@ -22,6 +41,9 @@ public class BoardData {
     	this.columnSums=new Sum[columnCount];    
     	this.rowSums= new Sum[rowCount];
     }
+    
+    
+    
     
     /**
      * Retourne le nombre de colonnes du plateau de jeu
@@ -74,7 +96,11 @@ public class BoardData {
      * @param target somme à atteindre pour la colonne
      */
     public void initColumnSum(int column, int target) {
-        // à compléter
+    	Array<Cell> cells = new Array<Cell>();
+    	for(int i = 0; i < this.rowCount; i++){
+    		cells[]
+    	}
+        this.columnSums[column]= new Sum(target, cells);
     }
 
     /**
