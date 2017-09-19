@@ -33,7 +33,12 @@ public class Sum {
      * @return vrai si la valeur courante est égale à la valeur à atteindre, faux sinon
      */
     public boolean isTargetReached() {
-        return false;
+        if(this.target == this.current){
+        	return true;
+        }
+        else{
+        	return false;
+        }
     }
     
     /**

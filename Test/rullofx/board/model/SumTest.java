@@ -62,4 +62,15 @@ public class SumTest {
         assertEquals(5, sum.getCurrent());
     }
     
+    @Test
+    public void isTargetReached_notReached(){
+    	sum = new Sum(9, this.cells);
+    	assertFalse("La somme n'est pas égale à la valeur requise", this.sum.isTargetReached());
+    }
+    
+    @Test
+    public void isTargetReached_Reached(){
+    	sum = new Sum(10, this.cells);
+    	assertTrue("La somme est égale à la valeur requise", this.sum.isTargetReached());
+    }
 }
