@@ -10,6 +10,8 @@ public class BoardData {
     private Sum[] columnSums;
     private Sum[] rowSums;
     
+    //Création d'une classe interne pour pouvoir accéder aux attributs de BoardData
+    //qui sont importants pour définir un tableau de colonnes ou de lignes
     public class Column implements Array<Cell> {
         private int column;
 
