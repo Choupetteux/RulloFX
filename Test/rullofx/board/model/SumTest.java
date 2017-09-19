@@ -73,4 +73,6 @@ public class SumTest {
     	sum = new Sum(10, this.cells);
     	assertTrue("La somme est égale à la valeur requise", this.sum.isTargetReached());
     }
+    
+    
 }

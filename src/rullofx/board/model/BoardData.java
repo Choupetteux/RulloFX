@@ -98,10 +98,7 @@ public class BoardData {
      * @param target somme à atteindre pour la colonne
      */
     public void initColumnSum(int column, int target) {
-    	Array<Cell> cells = new Array<Cell>();
-    	for(int i = 0; i < this.rowCount; i++){
-    		cells[]
-    	}
+    	Array<Cell> cells = new Column(column);
         this.columnSums[column]= new Sum(target, cells);
     }
 

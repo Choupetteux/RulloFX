@@ -28,8 +28,10 @@ public class BoardDataTest {
     	data.initCell(2, 2, 8);
     	data.initCell(1, 2, 3);
     	data.initCell(0, 2, 0);
+    	data.initColumnSum(2, 11);
     	assertTrue((data.getColumnSum(2).getCurrent() == 11));
     	assertFalse((data.getColumnSum(2).getCurrent() != 11));
+    	assertTrue((data.getColumnSum(2).getTarget() == 11));
     }
 
     @Test
