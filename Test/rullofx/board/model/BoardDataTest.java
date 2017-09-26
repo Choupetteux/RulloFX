@@ -29,13 +29,19 @@ public class BoardDataTest {
     	data.initCell(1, 2, 3);
     	data.initCell(0, 2, 0);
     	data.initColumnSum(2, 11);
-    	assertTrue((data.getColumnSum(2).getCurrent() == 11));
-    	assertFalse((data.getColumnSum(2).getCurrent() != 11));
-    	assertTrue((data.getColumnSum(2).getTarget() == 11));
+    	assertEquals(11, data.getColumnSum(2).getCurrent(), 1e-15);
+    	assertEquals(11, data.getColumnSum(2).getCurrent(), 1e-15);
+    	assertEquals(11, data.getColumnSum(2).getTarget(), 1e-15);
     }
 
     @Test
     public void initRowSum() { 
-        fail("Test pas encore implémenté");
+    	data.initCell(0, 2, 8);
+    	data.initCell(0, 1, 3);
+    	data.initCell(0, 0, 0);
+    	data.initRowSum(0, 11);
+    	assertEquals(11, data.getRowSum(0).getCurrent(), 1e-15);
+    	assertEquals(11, data.getRowSum(0).getCurrent(), 1e-15);
+    	assertEquals(11, data.getRowSum(0).getTarget(), 1e-15);
     }
 }

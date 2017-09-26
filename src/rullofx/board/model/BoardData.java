@@ -10,6 +10,7 @@ public class BoardData {
     private Sum[] columnSums;
     private Sum[] rowSums;
     
+    //--------------------------------------------------
     //Création d'une classe interne pour pouvoir accéder aux attributs de BoardData
     //qui sont importants pour définir un tableau de colonnes ou de lignes
     public class Column implements Array<Cell> {
@@ -29,7 +30,26 @@ public class BoardData {
             return BoardData.this.cells[row][this.column];
         }        
     }
-
+    
+    //Classe interne ligne
+    public class Row implements Array<Cell>{
+    	private int row;
+    	
+    	public Row(int row){
+    		this.row = row;
+    	}
+    	
+    	@Override
+    	public int size(){
+    		return BoardData.this.cells.length;
+    	}
+    	
+    	@Override
+    	public Cell get(int column){
+    		return BoardData.this.cells[this.row][column];
+    	}
+    }
+    //---------------------------------------------------
     
     /**
      * Constructeur
@@ -117,6 +137,7 @@ public class BoardData {
      * @param target somme à atteindre pour la ligne
      */
     public void initRowSum(int row, int target) {
-        // à compléter
+        Array<Cell> cells = new Row(row);
+        this.rowSums[row] = new Sum(target, cells);	
     }
 }
