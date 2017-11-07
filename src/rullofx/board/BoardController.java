@@ -3,6 +3,7 @@
  */
 package rullofx.board;
 
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
 public class BoardController {
@@ -13,7 +14,12 @@ public class BoardController {
     }
     
     public void onCellClicked(MouseEvent event, int row, int column){
-    	this.boardView.getBoardModel().toggleActiveState(row, column);
+    	if(event.getButton() == MouseButton.PRIMARY){
+    		this.boardView.getBoardModel().toggleActiveState(row, column);
+    	}
+    	if(event.getButton() == MouseButton.SECONDARY){
+    		this.boardView.getBoardModel().toggleLockedState(row, column);
+    	}
     }
     
     
