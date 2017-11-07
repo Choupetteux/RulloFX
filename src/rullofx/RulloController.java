@@ -15,9 +15,9 @@ public class RulloController {
 	 * Méthode invoquée automatiquement après la création de l'interface graphique
 	 * associée à ce contrôleur.
 	 */
-	public void initialize() {
+	/*public void initialize() {
 		BoardView boardView=new BoardView();
-		stackPane.getChildren().add(boardView /*= new BoardView()*/);
+		stackPane.getChildren().add(boardView = new BoardView());
 
 		public EventType enumeration=new EventType();
 		switch(enumeration){
@@ -49,7 +49,7 @@ public class RulloController {
 			this.column=col;
 		}
 
-	}
+	}*/
 }
 
 

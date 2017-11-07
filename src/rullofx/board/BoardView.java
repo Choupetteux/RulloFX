@@ -30,7 +30,7 @@ public class BoardView extends GridPane implements Observer {
 	}
 
 
-	public Class CellView(){
+	/*public Class CellView(){
 		private int row;
 		private int column;
 		private Label Text;
@@ -48,7 +48,7 @@ public class BoardView extends GridPane implements Observer {
 		public void updateLockedState(){
 		}
 
-	}
+	}*/
 
 
 

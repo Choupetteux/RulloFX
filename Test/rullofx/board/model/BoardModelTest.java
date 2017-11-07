@@ -9,6 +9,8 @@ import java.util.Observer;
 import org.junit.Before;
 import org.junit.Test;
 
+import rullofx.board.model.BoardModelEvent.EventType;
+
 public class BoardModelTest implements Observer {
 
 	BoardDataFactory factory = new SampleBoardDataFactory();
@@ -62,15 +64,16 @@ public class BoardModelTest implements Observer {
 		assertTrue("La cellule devrait être réactivé après un reset", model.isCellActive(1, 0));
 		assertTrue("La cellule devrait être réactivé après un reset", model.isCellActive(2, 0));
 	}
-	  @Test
-	  public void testStartGame_startEventFired() {
-	      // invocation d'une méthode censée émettre un événement
-	      model.startGame();
-	      // récupération de l'événement attendu
-	      BoardModelEvent event = receivedEvents.get(BoardModelEvent.EventType.START_EVENT);
-	      // vérification de sa présence
-	      assertNotNull(event);
-	   }
+	
+	@Test
+	public void testStartGame_startEventFired() {
+	    // invocation d'une méthode censée émettre un événement
+	    model.startGame();
+	    // récupération de l'événement attendu
+	    BoardModelEvent event = receivedEvents.get(BoardModelEvent.EventType.START_EVENT);
+	    // vérification de sa présence
+	    assertNotNull(event);
+	 }
 	  
 	  @Test
 	  	public void emissionEvenementType(){
@@ -79,7 +82,13 @@ public class BoardModelTest implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		EnumMap<BoardModelEvent.EventType, BoardModelEvent> receivedEvents;
+		BoardModelEvent event = (BoardModelEvent) arg;
+		receivedEvents.put(event.eventType, (BoardModelEvent) arg );
+	}
+	
+	@Test
+	public void testEventType_activationEvent(){
+		
 	}
 	  
 }
