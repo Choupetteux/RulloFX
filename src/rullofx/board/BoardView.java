@@ -28,14 +28,16 @@ public class BoardView extends GridPane implements Observer {
 			this.text = new Label();
 			getStyleClass().add("cell");
 			getStyleClass().add("active");
+			updateActiveState();
+			updateLockedState();
 		}
 		
 		public void updateActiveState(){
-			
+			System.out.print("UpdateActiveState : " + this.row + " ; " + this.column);
 		}
 		
 		public void updateLockedState(){
-			
+			System.out.print("UpdateLockedState : " + this.row + " ; " + this.column);
 		}
 
 	}
