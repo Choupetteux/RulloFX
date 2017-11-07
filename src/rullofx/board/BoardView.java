@@ -59,7 +59,7 @@ public class BoardView extends GridPane implements Observer {
 			this.init();
 			break;
 		case ACTIVATION_EVENT:
-			
+			this.cellViews[event.row][event.column].updateActiveState();
 			break;
 		case LOCK_EVENT:
 			break;
