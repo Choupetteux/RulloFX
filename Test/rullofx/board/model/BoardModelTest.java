@@ -17,6 +17,7 @@ public class BoardModelTest {
 	@Before
 	public void setUp() throws Exception {
 		model = new BoardModel(factory);
+		receivedEvents = new EnumMap<BoardModelEvent.EventType, BoardModelEvent>(BoardModelEvent.EventType.class);
 		model.addObserver((Observer) this);
 		model.startGame();
 	}
@@ -61,14 +62,15 @@ public class BoardModelTest {
 		assertTrue("La cellule devrait être réactivé après un reset", model.isCellActive(2, 0));
 	}
 	  @Test
-	    public void testStartGame_startEventFired() {
-	        // invocation d'une méthode censée émettre un événement
-	        model.startGame();
-	        // récupération de l'événement attendu
-	        BoardModelEvent event = receivedEvents.get(BoardModelEvent.EventType.START_EVENT);
-	        // vérification de sa présence
-	        assertNotNull(event);
-	    }
+	  public void testStartGame_startEventFired() {
+	      // invocation d'une méthode censée émettre un événement
+	      model.startGame();
+	      // récupération de l'événement attendu
+	      BoardModelEvent event = receivedEvents.get(BoardModelEvent.EventType.START_EVENT);
+	      // vérification de sa présence
+	      assertNotNull(event);
+	   }
+	  
 	  @Test
 	  	public void emissionEvenementType(){
 		  
