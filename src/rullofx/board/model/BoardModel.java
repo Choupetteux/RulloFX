@@ -50,6 +50,8 @@ public class BoardModel extends Observable {
 		boolean ok= false;
 		if (this.data.getColumnSum(column).getCurrent()==this.getColumnTarget(column)){
 			ok=true;
+			this.setChanged();
+			this.notifyObservers(new BoardModelEvent(BoardModelEvent.EventType.REACHED_COLUMN_EVENT));
 		}
 		return ok;
 	}
@@ -59,6 +61,8 @@ public class BoardModel extends Observable {
 		boolean ok= false;
 		if (this.data.getRowSum(row).getCurrent()==this.getRowTarget(row)){
 			ok=true;
+			this.setChanged();
+			this.notifyObservers(new BoardModelEvent(BoardModelEvent.EventType.REACHED_ROW_EVENT));
 		}
 		return ok;
 	}

@@ -118,15 +118,17 @@ public class BoardModelTest implements Observer {
 	
 	@Test
 	public void testEventType_reachedColumnEvent(){
-	    model.toggleActiveState(0, 0);
-	    BoardModelEvent event = receivedEvents.get(BoardModelEvent.EventType.ACTIVATION_EVENT);
+	    model.toggleActiveState(1, 1);
+	    model.isColumnTargetReached(1);
+	    BoardModelEvent event = receivedEvents.get(BoardModelEvent.EventType.REACHED_COLUMN_EVENT);
 	    assertNotNull(event);
 	}
 	
 	@Test
 	public void testEventType_reachedRowEvent(){
-	    model.toggleActiveState(0, 0);
-	    BoardModelEvent event = receivedEvents.get(BoardModelEvent.EventType.ACTIVATION_EVENT);
+	    model.toggleActiveState(0, 2);
+	    model.isRowTargetReached(0);
+	    BoardModelEvent event = receivedEvents.get(BoardModelEvent.EventType.REACHED_ROW_EVENT);
 	    assertNotNull(event);
 	}
 	
