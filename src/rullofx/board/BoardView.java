@@ -9,15 +9,32 @@ import javafx.scene.control.Label;
 
 import javafx.scene.layout.GridPane;
 import rullofx.board.model.BoardModel;
+import rullofx.board.model.BoardModelEvent;
 
 public class BoardView extends GridPane implements Observer {
+	
 	private BoardController controller = new BoardController(this);
-	private BoardModel model = new BoardModel();
+	private BoardModel model;
 	
 	@Override
 	public void update(Observable o, Object arg) {
 		System.out.print(arg);
-
+		BoardModelEvent event = (BoardModelEvent) arg;
+		switch(event.eventType){
+		case START_EVENT:
+			this.init();
+			break;
+		case ACTIVATION_EVENT:
+			break;
+		case LOCK_EVENT:
+			break;
+		case REACHED_COLUMN_EVENT:
+			break;
+		case REACHED_ROW_EVENT:
+			break;
+		case SOLVED_EVENT:
+			break;
+		}
 	}
 
 	public void setModel(BoardModel model){

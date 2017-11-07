@@ -22,7 +22,15 @@ public class RulloController {
 		boardView.setModel(model);
 		boardView.getBoardModel().startGame();
 	}
-
+	
+	
+	
+	
+	
+	
+	
+	
+/*
 	public EventType enumeration=new EventType();
 	switch(enumeration){
 	case START_EVENT:
