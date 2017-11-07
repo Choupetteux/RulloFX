@@ -7,9 +7,10 @@ import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
 
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import rullofx.board.model.BoardModel;
 import rullofx.board.model.BoardModelEvent;
@@ -32,6 +33,12 @@ public class BoardView extends GridPane implements Observer {
 			getStyleClass().add("active");
 			updateActiveState();
 			updateLockedState();
+			this.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent e) {
+  		    	  controller.onCellClicked(e,row,col);
+  		      }
+  		    });
 		}
 		
 		public void updateActiveState(){
