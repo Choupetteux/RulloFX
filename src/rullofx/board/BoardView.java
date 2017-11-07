@@ -3,8 +3,11 @@
  */
 package rullofx.board;
 
+import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
+
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 
 import javafx.scene.layout.GridPane;
@@ -15,17 +18,16 @@ public class BoardView extends GridPane implements Observer {
 	
 	private BoardController controller = new BoardController(this);
 	private BoardModel model;
-	private CellView cellViews;
+	private CellView cellViews[][];
 	
-	public class CellView{
+	public class CellView extends Label{
 		private int row;
 		private int column;
-		private Label text;
 
 		public CellView(int row, int col){
+			super("" + model.getValue(row, col));
 			this.row=row;
 			this.column=col;
-			this.text = new Label();
 			getStyleClass().add("cell");
 			getStyleClass().add("active");
 			updateActiveState();
@@ -33,18 +35,17 @@ public class BoardView extends GridPane implements Observer {
 		}
 		
 		public void updateActiveState(){
-			System.out.print("UpdateActiveState : " + this.row + " ; " + this.column);
+			System.out.println("UpdateActiveState : " + this.row + " ; " + this.column);
 		}
 		
 		public void updateLockedState(){
-			System.out.print("UpdateLockedState : " + this.row + " ; " + this.column);
+			System.out.println("UpdateLockedState : " + this.row + " ; " + this.column);
 		}
-
 	}
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		System.out.print(arg);
+		System.out.println(arg);
 		BoardModelEvent event = (BoardModelEvent) arg;
 		switch(event.eventType){
 		case START_EVENT:
@@ -82,6 +83,13 @@ public class BoardView extends GridPane implements Observer {
 	}
 
 	public void init(){
+		this.cellViews = new CellView[this.model.getRowCount()][this.model.getColumnCount()];
+		for(int i = 0; i < this.model.getRowCount(); i++){
+			for(int j = 0; j < this.model.getColumnCount(); j++){
+				this.cellViews[i][j] = new CellView(i, j);
+				this.add(this.cellViews[i][j], j+1, i+1);
+			}
+		}
 		
 	}
 

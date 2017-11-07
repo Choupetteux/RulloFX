@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-	
+
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-	
-<VBox styleClass="board" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rullofx.RulloController">
-	<!-- TODO Add Nodes -->
+
+<VBox styleClass="board" xmlns="http://javafx.com/javafx/8.0.91" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rullofx.RulloController">
+   <children>
+      <StackPane fx:id="stackPane" prefHeight="150.0" prefWidth="200.0" />
+   </children>
 </VBox>
