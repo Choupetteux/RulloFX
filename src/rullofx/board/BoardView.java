@@ -53,7 +53,12 @@ public class BoardView extends GridPane implements Observer {
 		}
 		
 		public void updateLockedState(){
-			System.out.println("UpdateLockedState : " + this.row + " ; " + this.column);
+			if(model.isCellLocked(row, column)){
+    			this.getStyleClass().add("locked");
+    		}
+			else{
+    			this.getStyleClass().remove("locked");
+    		}
 		}
 	}
 	
@@ -69,6 +74,7 @@ public class BoardView extends GridPane implements Observer {
 			this.cellViews[event.row][event.column].updateActiveState();
 			break;
 		case LOCK_EVENT:
+			this.cellViews[event.row][event.column].updateLockedState();
 			break;
 		case REACHED_COLUMN_EVENT:
 			
