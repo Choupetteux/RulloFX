@@ -3,12 +3,13 @@ package rullofx.board.model;
 import static org.junit.Assert.*;
 
 import java.util.EnumMap;
+import java.util.Observable;
 import java.util.Observer;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class BoardModelTest {
+public class BoardModelTest implements Observer {
 
 	BoardDataFactory factory = new SampleBoardDataFactory();
 	BoardModel model;
@@ -18,8 +19,8 @@ public class BoardModelTest {
 	public void setUp() throws Exception {
 		model = new BoardModel(factory);
 		receivedEvents = new EnumMap<BoardModelEvent.EventType, BoardModelEvent>(BoardModelEvent.EventType.class);
-		model.addObserver((Observer) this);
 		model.startGame();
+		model.addObserver(this);
 	}
 
 	@Test
@@ -75,5 +76,10 @@ public class BoardModelTest {
 	  	public void emissionEvenementType(){
 		  
 	  }
+
+	@Override
+	public void update(Observable o, Object arg) {
+		EnumMap<BoardModelEvent.EventType, BoardModelEvent> receivedEvents;
+	}
 	  
 }

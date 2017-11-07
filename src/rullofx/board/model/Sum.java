@@ -47,8 +47,6 @@ public class Sum {
      * Met à jour la somme courante, en ne tenant compte que des cellules actives.
      */
     public void update() {
-    //Ajouter évènement reçu à l'EnumMap receivedEvents	--A REVOIR
-    	EnumMap<BoardModelEvent.EventType, BoardModelEvent> receivedEvents;
     	this.current = 0;
     	//Pour chaque cellule
     	for(int i = 0; i < this.cells.size(); i++){
