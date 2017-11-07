@@ -3,6 +3,7 @@ package rullofx.board.model;
 import static org.junit.Assert.*;
 
 import java.util.EnumMap;
+import java.util.Observer;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +17,7 @@ public class BoardModelTest {
 	@Before
 	public void setUp() throws Exception {
 		model = new BoardModel(factory);
-		model.addObserver(this);
+		model.addObserver((Observer) this);
 		model.startGame();
 	}
 
@@ -59,5 +60,18 @@ public class BoardModelTest {
 		assertTrue("La cellule devrait être réactivé après un reset", model.isCellActive(1, 0));
 		assertTrue("La cellule devrait être réactivé après un reset", model.isCellActive(2, 0));
 	}
-	
+	  @Test
+	    public void testStartGame_startEventFired() {
+	        // invocation d'une méthode censée émettre un événement
+	        model.startGame();
+	        // récupération de l'événement attendu
+	        BoardModelEvent event = receivedEvents.get(BoardModelEvent.EventType.START_EVENT);
+	        // vérification de sa présence
+	        assertNotNull(event);
+	    }
+	  @Test
+	  	public void emissionEvenementType(){
+		  
+	  }
+	  
 }

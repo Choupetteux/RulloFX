@@ -1,5 +1,7 @@
 package rullofx.board.model;
 
+import java.util.EnumMap;
+
 public class Sum {
 	private int target;
 	private int current;
@@ -45,6 +47,8 @@ public class Sum {
      * Met à jour la somme courante, en ne tenant compte que des cellules actives.
      */
     public void update() {
+    //Ajouter évènement reçu à l'EnumMap receivedEvents	--A REVOIR
+    	EnumMap<EventType<cle>> receivedEvents=EnumMap<EventType>;
     	this.current = 0;
     	//Pour chaque cellule
     	for(int i = 0; i < this.cells.size(); i++){
