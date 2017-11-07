@@ -13,8 +13,8 @@ public class BoardController {
     }
     
     public void onCellClicked(MouseEvent event, int row, int column){
-    	System.out.println(row);
-    	System.out.println(column);
-    	System.out.println(event);
+    	this.boardView.getBoardModel().toggleActiveState(row, column);
     }
+    
+    
 }
