@@ -109,6 +109,14 @@ public class BoardModelTest implements Observer {
 	}
 	
 	@Test
+	public void testEventType_noLockEvent(){
+		model.toggleActiveState(0, 0);
+	    model.toggleLockedState(0, 0);
+	    BoardModelEvent event = receivedEvents.get(BoardModelEvent.EventType.LOCK_EVENT);
+	    assertNull(event);
+	}
+	
+	@Test
 	public void testEventType_reachedColumnEvent(){
 	    model.toggleActiveState(0, 0);
 	    BoardModelEvent event = receivedEvents.get(BoardModelEvent.EventType.ACTIVATION_EVENT);

@@ -128,8 +128,9 @@ public class BoardModel extends Observable {
 	 * @param column colonne de la cellule
 	 */
 	public void toggleLockedState(int row, int column) {
-		this.data.getCell(row,column).toggleLockedState();
+		if(this.data.getCell(row,column).toggleLockedState()){
 		this.setChanged();
 		this.notifyObservers(new BoardModelEvent(BoardModelEvent.EventType.LOCK_EVENT));
+		}
 	}
 }
