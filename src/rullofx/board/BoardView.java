@@ -13,6 +13,7 @@ import rullofx.board.model.BoardModel;
 public class BoardView extends GridPane implements Observer {
 	private BoardController controller = new BoardController(this);
 	private BoardModel model = new BoardModel();
+	
 	@Override
 
 	public void update(Observable o, Object arg) {
@@ -22,8 +23,10 @@ public class BoardView extends GridPane implements Observer {
 
 	public void setModel(BoardModel model){
 		this.model=model;
-
-
+	}
+	
+	public BoardModel getBoardModel(){
+		return this.model;
 	}
 
 	public void init(){
