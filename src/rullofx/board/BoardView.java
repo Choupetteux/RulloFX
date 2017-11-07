@@ -15,7 +15,6 @@ public class BoardView extends GridPane implements Observer {
 	private BoardModel model = new BoardModel();
 	
 	@Override
-
 	public void update(Observable o, Object arg) {
 		System.out.print(arg);
 
@@ -23,6 +22,12 @@ public class BoardView extends GridPane implements Observer {
 
 	public void setModel(BoardModel model){
 		this.model=model;
+		if(this.model.countObservers() == 0){
+			this.model.addObserver(this);
+		}
+		else {
+			this.model.deleteObserver(this);
+		}
 	}
 	
 	public BoardModel getBoardModel(){
