@@ -42,7 +42,14 @@ public class BoardView extends GridPane implements Observer {
 		}
 		
 		public void updateActiveState(){
-			System.out.println("UpdateActiveState : " + this.row + " ; " + this.column);
+			if(!model.isCellActive(row, column)){
+				this.getStyleClass().remove("active");
+				this.getStyleClass().add("inactive");
+			}
+			else{
+				this.getStyleClass().remove("inactive");
+				this.getStyleClass().add("active");
+			}
 		}
 		
 		public void updateLockedState(){

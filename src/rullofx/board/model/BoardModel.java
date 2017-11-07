@@ -49,25 +49,20 @@ public class BoardModel extends Observable {
 	public boolean isColumnTargetReached(int column){
 		boolean ok= false;
 		if (this.data.getColumnSum(column).getCurrent()==this.getColumnTarget(column)){
-			ok=true;
-			this.setChanged();
-			this.notifyObservers(new BoardModelEvent(BoardModelEvent.EventType.REACHED_COLUMN_EVENT));
+			return ok;
 		}
 		return ok;
 	}
 
 	public boolean isRowTargetReached(int row){
-
 		boolean ok= false;
 		if (this.data.getRowSum(row).getCurrent()==this.getRowTarget(row)){
 			ok=true;
-			this.setChanged();
-			this.notifyObservers(new BoardModelEvent(BoardModelEvent.EventType.REACHED_ROW_EVENT));
 		}
 		return ok;
 	}
-	
-	
+
+
 	public boolean isSolved() {
 		boolean res = true;
 		for(int i = 0; i < this.data.getColumnCount(); i++){
@@ -80,25 +75,21 @@ public class BoardModel extends Observable {
 				res = false;
 			}
 		}
-		if(res == true){
-			this.setChanged();
-			this.notifyObservers(new BoardModelEvent(BoardModelEvent.EventType.SOLVED_EVENT));
-		}
 		return res;
 	}
 
 	/**
 	 * Démarre une nouvelle partie.
 	 */
-	 public void startGame() {
-	        data = boardDataFactory.createBoardData();
+	public void startGame() {
+		data = boardDataFactory.createBoardData();
 
-	        // marque le modèle comme ayant changé
-	        this.setChanged();
-	        
-	        // émission d'un événement à destination des observateurs du modèle
-	        this.notifyObservers(new BoardModelEvent(BoardModelEvent.EventType.START_EVENT));
-	    }
+		// marque le modèle comme ayant changé
+		this.setChanged();
+
+		// émission d'un événement à destination des observateurs du modèle
+		this.notifyObservers(new BoardModelEvent(BoardModelEvent.EventType.START_EVENT));
+	}
 
 	/**
 	 * Réinitialise le plateau (sans changer les données). Les cellules sont toutes activées et dévérouillées.
@@ -121,24 +112,43 @@ public class BoardModel extends Observable {
 	 * @param column colonne de la cellule
 	 */
 	public void toggleActiveState(int row, int column) {
-		if(this.data.getCell(row,column).toggleActiveState()){
-			this.data.getRowSum(row).update();
-			this.data.getColumnSum(column).update();
-			this.setChanged();
-			this.notifyObservers(new BoardModelEvent(BoardModelEvent.EventType.ACTIVATION_EVENT));
-		}
-		
-	}
+    	boolean succeed = data.getCell(row, column).toggleActiveState();
+    	
+    	boolean columnTargetReachedBefore = isColumnTargetReached(column); 
+    	data.getColumnSum(column).update();
+    	boolean columnTargetReachedAfter = isColumnTargetReached(column); 
+    	
+    	boolean rowTargetReachedBefore = isRowTargetReached(row);
+    	data.getRowSum(row).update();
+    	boolean rowTargetReachedAfter = isRowTargetReached(row);
+    	
+    	if(succeed){
+    		this.setChanged();
+    		this.notifyObservers(new BoardModelEvent(BoardModelEvent.EventType.ACTIVATION_EVENT,row,column));
+    	}
+    	if((columnTargetReachedBefore && !columnTargetReachedAfter) || (!columnTargetReachedBefore && columnTargetReachedAfter)){
+    		this.setChanged();
+    		this.notifyObservers(new BoardModelEvent(BoardModelEvent.EventType.REACHED_COLUMN_EVENT,row,column));
+    	}
+    	if((rowTargetReachedBefore && !rowTargetReachedAfter) || (!rowTargetReachedBefore && rowTargetReachedAfter)){
+    		this.setChanged();
+    		this.notifyObservers(new BoardModelEvent(BoardModelEvent.EventType.REACHED_ROW_EVENT,row,column));
+    	}
+    	if(this.isSolved()){
+    		this.setChanged();
+    		this.notifyObservers(new BoardModelEvent(BoardModelEvent.EventType.SOLVED_EVENT,row,column));
+    	}
+    }
 
-	/**
-	 * Inverse l'état de verrouillage d'une cellule. Si la cellule est désactivée, l'état ne sera pas modifié.
-	 * @param row ligne de la cellule
-	 * @param column colonne de la cellule
-	 */
-	public void toggleLockedState(int row, int column) {
-		if(this.data.getCell(row,column).toggleLockedState()){
+/**
+ * Inverse l'état de verrouillage d'une cellule. Si la cellule est désactivée, l'état ne sera pas modifié.
+ * @param row ligne de la cellule
+ * @param column colonne de la cellule
+ */
+public void toggleLockedState(int row, int column) {
+	if(this.data.getCell(row,column).toggleLockedState()){
 		this.setChanged();
-		this.notifyObservers(new BoardModelEvent(BoardModelEvent.EventType.LOCK_EVENT));
-		}
+		this.notifyObservers(new BoardModelEvent(BoardModelEvent.EventType.LOCK_EVENT, row, column));
 	}
+}
 }
