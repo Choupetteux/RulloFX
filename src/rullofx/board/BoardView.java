@@ -21,6 +21,13 @@ public class BoardView extends GridPane implements Observer {
 	private BoardModel model;
 	private CellView cellViews[][];
 	
+	
+	//------------------------------------------------------------------------//
+	//							CLASSE INTERNE								  //
+	//------------------------------------------------------------------------//
+	
+	//_________________________________________________________________________
+	//Classe Cell View
 	public class CellView extends Label{
 		private int row;
 		private int column;
@@ -61,6 +68,22 @@ public class BoardView extends GridPane implements Observer {
     		}
 		}
 	}
+	//_______________________________________________________________
+	
+	//Classe ColumnSumView
+	
+	
+	
+	
+	
+	
+	
+	//________________________________________________________________
+	
+	
+	//------------------------------------------------------------------------//
+	//					FIN DES CLASSES INTERNES				  		      //
+	//------------------------------------------------------------------------//
 	
 	@Override
 	public void update(Observable o, Object arg) {
