@@ -48,7 +48,7 @@ public class Sum {
      */
     public void update() {
     //Ajouter évènement reçu à l'EnumMap receivedEvents	--A REVOIR
-    	EnumMap<EventType<cle>> receivedEvents=EnumMap<EventType>;
+    	EnumMap<BoardModelEvent.EventType, BoardModelEvent> receivedEvents;
     	this.current = 0;
     	//Pour chaque cellule
     	for(int i = 0; i < this.cells.size(); i++){
