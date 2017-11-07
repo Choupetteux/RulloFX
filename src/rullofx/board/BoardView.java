@@ -15,6 +15,30 @@ public class BoardView extends GridPane implements Observer {
 	
 	private BoardController controller = new BoardController(this);
 	private BoardModel model;
+	private CellView cellViews;
+	
+	public class CellView{
+		private int row;
+		private int column;
+		private Label text;
+
+		public CellView(int row, int col){
+			this.row=row;
+			this.column=col;
+			this.text = new Label();
+			getStyleClass().add("cell");
+			getStyleClass().add("active");
+		}
+		
+		public void updateActiveState(){
+			
+		}
+		
+		public void updateLockedState(){
+			
+		}
+
+	}
 	
 	@Override
 	public void update(Observable o, Object arg) {
@@ -25,14 +49,18 @@ public class BoardView extends GridPane implements Observer {
 			this.init();
 			break;
 		case ACTIVATION_EVENT:
+			
 			break;
 		case LOCK_EVENT:
 			break;
 		case REACHED_COLUMN_EVENT:
+			
 			break;
 		case REACHED_ROW_EVENT:
+			
 			break;
 		case SOLVED_EVENT:
+			
 			break;
 		}
 	}
@@ -52,28 +80,11 @@ public class BoardView extends GridPane implements Observer {
 	}
 
 	public void init(){
+		
 	}
 
 
-	/*public Class CellView(){
-		private int row;
-		private int column;
-		private Label Text;
-
-
-		public CellView(int row, int col){
-			this.row=row;
-			this.column=col;
-
-		}
-		
-		public void updateActiveState(){
-		}
-		
-		public void updateLockedState(){
-		}
-
-	}*/
+	
 
 
 

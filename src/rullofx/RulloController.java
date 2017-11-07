@@ -22,46 +22,8 @@ public class RulloController {
 		boardView.setModel(model);
 		boardView.getBoardModel().startGame();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-/*
-	public EventType enumeration=new EventType();
-	switch(enumeration){
-	case START_EVENT:
-		this.boardView.init();
-		break;
-	case ACTIVATION_EVENT:
-		break;
-	case LOCK_EVENT:
-		break;
-	case REACHED_COLUMN_EVENT:
-		break;
-	case REACHED_ROW_EVENT:
-		break;
-	case SOLVED_EVENT:
-		break;
-	}
-}
 
-
-
-
-public Class CellView(){
-	private int row;
-	private int column;
-
-	public CellView(int row, int col){
-		this.row=row;
-		this.column=col;
-	}
-
-}*/
+	
 }
 
 
