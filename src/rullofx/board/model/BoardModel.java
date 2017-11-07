@@ -76,6 +76,10 @@ public class BoardModel extends Observable {
 				res = false;
 			}
 		}
+		if(res == true){
+			this.setChanged();
+			this.notifyObservers(new BoardModelEvent(BoardModelEvent.EventType.SOLVED_EVENT));
+		}
 		return res;
 	}
 

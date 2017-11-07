@@ -132,8 +132,12 @@ public class BoardModelTest implements Observer {
 	
 	@Test
 	public void testEventType_solvedEvent(){
-	    model.toggleActiveState(0, 0);
-	    BoardModelEvent event = receivedEvents.get(BoardModelEvent.EventType.ACTIVATION_EVENT);
+		model.toggleActiveState(1, 0);
+		model.toggleActiveState(2, 0);
+		model.toggleActiveState(0, 2);
+		model.toggleActiveState(1, 1);
+		model.isSolved();
+	    BoardModelEvent event = receivedEvents.get(BoardModelEvent.EventType.SOLVED_EVENT);
 	    assertNotNull(event);
 	}
 	  
