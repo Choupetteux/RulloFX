@@ -22,5 +22,10 @@ public class BoardController {
     	}
     }
     
+    public void onRowSumClicked(MouseEvent event, int row, int column){
+    	
+    }
+    
+    
     
 }
