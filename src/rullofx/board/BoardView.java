@@ -196,8 +196,27 @@ public class BoardView extends GridPane implements Observer {
 				this.add(this.cellViews[i][j], j+1, i+1);
 			}
 		}
-
+		
+		this.leftSumViews = new RowSumView[model.getRowCount()];
+    	this.rightSumViews = new RowSumView[model.getRowCount()];
+    	for(int i = 0; i<model.getRowCount(); i++){
+    		this.leftSumViews[i] = new RowSumView(i);
+    		this.rightSumViews[i] = new RowSumView(i);
+    		this.add(this.leftSumViews[i],0,i+1);
+    		this.add(this.rightSumViews[i],model.getColumnCount()+1,i+1);
+    	}
+    	
+    	this.topSumViews = new ColumnSumView[model.getColumnCount()];
+    	this.bottomSumViews = new ColumnSumView[model.getColumnCount()];
+    	for(int i = 0; i<model.getColumnCount(); i++){
+    		this.topSumViews[i] = new ColumnSumView(i);
+    		this.bottomSumViews[i] = new ColumnSumView(i);
+    		this.add(this.topSumViews[i],i+1,0);
+    		this.add(this.bottomSumViews[i],i+1,model.getRowCount()+1);
+    	}
+		
 	}
+	
 
 
 
