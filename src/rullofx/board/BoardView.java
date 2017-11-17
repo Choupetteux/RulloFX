@@ -16,16 +16,20 @@ import rullofx.board.model.BoardModel;
 import rullofx.board.model.BoardModelEvent;
 
 public class BoardView extends GridPane implements Observer {
-	
+
 	private BoardController controller = new BoardController(this);
 	private BoardModel model;
 	private CellView cellViews[][];
-	
-	
+	private RowSumView[] leftSumViews;
+    private RowSumView[] rightSumViews;
+    
+    private ColumnSumView[] topSumViews;
+    private ColumnSumView[] bottomSumViews;
+
 	//------------------------------------------------------------------------//
 	//							CLASSE INTERNE								  //
 	//------------------------------------------------------------------------//
-	
+
 	//_________________________________________________________________________
 	//Classe Cell View
 	public class CellView extends Label{
@@ -43,11 +47,11 @@ public class BoardView extends GridPane implements Observer {
 			this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent e) {
-  		    	  controller.onCellClicked(e,row,col);
-  		      }
-  		    });
+					controller.onCellClicked(e,row,col);
+				}
+			});
 		}
-		
+
 		public void updateActiveState(){
 			if(!model.isCellActive(row, column)){
 				this.getStyleClass().remove("active");
@@ -58,33 +62,92 @@ public class BoardView extends GridPane implements Observer {
 				this.getStyleClass().add("active");
 			}
 		}
-		
+
 		public void updateLockedState(){
 			if(model.isCellLocked(row, column)){
-    			this.getStyleClass().add("locked");
-    		}
+				this.getStyleClass().add("locked");
+			}
 			else{
-    			this.getStyleClass().remove("locked");
-    		}
+				this.getStyleClass().remove("locked");
+			}
 		}
 	}
 	//_______________________________________________________________
-	
-	//Classe ColumnSumView
-	
-	
-	
-	
-	
-	
-	
+
+	//Classe SumView
+
+	public class SumView extends Label{
+
+		public SumView(int n){
+			super(""+n);
+			this.getStyleClass().add("sum");
+		}
+
+		public  void setReached(boolean state){
+			if(state){
+				this.getStyleClass().add("correct");
+			}else{
+				this.getStyleClass().remove("correct");
+			}
+		}
+	}
 	//________________________________________________________________
 	
+	//Classe RowSumView
+	public class RowSumView extends SumView{
+
+		private int row;
+
+		public RowSumView(int n) {
+			super(model.getRowTarget(n));
+			this.row = n;
+			this.update();
+			this.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent e) {
+					controller.onRowSumClicked(e,row);
+				}
+			});
+		}
+
+		public void update(){
+			System.out.println("Target : "+model.getRowTarget(row)+" Index : "+row);
+			this.setReached(model.isRowTargetReached(row));
+		}
+	}
+	//________________________________________________________________
 	
+	//Classe ColumnSumView
+	public class ColumnSumView extends SumView{
+
+		private int column;
+
+		public ColumnSumView(int n) {
+			super(model.getColumnTarget(n));
+			this.column = n;
+			this.update();
+			this.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent e) {
+					controller.onColumnSumClicked(e,column);
+				}
+			});
+		}
+
+		public void update(){
+			System.out.println("Target : "+model.getRowTarget(column)+" Index : "+column);
+			this.setReached(model.isColumnTargetReached(column));
+		}
+
+	}
+
+	//________________________________________________________________
+
+
 	//------------------------------------------------------------------------//
 	//					FIN DES CLASSES INTERNES				  		      //
 	//------------------------------------------------------------------------//
-	
+
 	@Override
 	public void update(Observable o, Object arg) {
 		System.out.println(arg);
@@ -100,13 +163,13 @@ public class BoardView extends GridPane implements Observer {
 			this.cellViews[event.row][event.column].updateLockedState();
 			break;
 		case REACHED_COLUMN_EVENT:
-			
+
 			break;
 		case REACHED_ROW_EVENT:
-			
+
 			break;
 		case SOLVED_EVENT:
-			
+
 			break;
 		}
 	}
@@ -120,7 +183,7 @@ public class BoardView extends GridPane implements Observer {
 			this.model.deleteObserver(this);
 		}
 	}
-	
+
 	public BoardModel getBoardModel(){
 		return this.model;
 	}
@@ -133,11 +196,11 @@ public class BoardView extends GridPane implements Observer {
 				this.add(this.cellViews[i][j], j+1, i+1);
 			}
 		}
-		
+
 	}
 
 
-	
+
 
 
 
